@@ -11,8 +11,8 @@ export default class InventoryPage{
     getInventoryItemsList(){
         return cy.get('[data-test="inventory-item"]')
     }
-    getChosenItem(x){
-       const chosenItem = this.getInventoryItemsList().eq(x);
+    getChosenItemComponent(index){
+       const chosenItem = this.getInventoryItemsList().eq(index);
        return new ItemComponent(chosenItem);
     }
 }
