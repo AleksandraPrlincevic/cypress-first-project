@@ -1,5 +1,5 @@
 import HeaderComponent from "./HeaderComponent";
-import ItemComponent from "./ItemComonent";
+import ItemComponent from "./ItemComponent";
 
 export default class InventoryPage{
     constructor(){
@@ -12,7 +12,8 @@ export default class InventoryPage{
         return cy.get('[data-test="inventory-item"]')
     }
     getChosenItemComponent(index){
-       const chosenItem = this.getInventoryItemsList().eq(index);
-       return new ItemComponent(chosenItem);
+      return this.getInventoryItemsList().eq(index).then((el)=>{
+          return new ItemComponent(el);
+      })
     }
 }
