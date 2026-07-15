@@ -7,9 +7,9 @@ export default class HeaderComponent {
         return cy.get('[data-test="shopping-cart-badge"]')
     }
     get burgerMenu(){
-        return cy.get('#react-burger-manu-button')
+        return cy.get('#react-burger-menu-button')
     }
     clickCartIcon(){
-        return this.cartIcon.click();
+        this.cartIcon.click();
     }
 }

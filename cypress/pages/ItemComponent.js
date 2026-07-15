@@ -11,7 +11,7 @@ export default class ItemComponent {
         }
 
     get inventoryItemPrice(){
-        return this.root.find('[data-test="inventory-item-priceW]')
+        return this.root.find('[data-test="inventory-item-price"]')
         }
 
     get inventoryItemPhoto() {
@@ -19,12 +19,12 @@ export default class ItemComponent {
     }
 
     clickAddToCartButton(){
-        this.addToCartButton.click();
+        cy.wrap(this.addToCartButton).click();
     }
     clickItemPhotoLink(){
-        this.inventoryItemPhoto.click();
+        cy.wrap(this.inventoryItemPhoto).click();
     }
     clickItemNameLink(){
-        this.inventoryItemName.click();
+        cy.wrap(this.inventoryItemName).click();
     }
 }
