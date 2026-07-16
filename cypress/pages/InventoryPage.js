@@ -26,4 +26,22 @@ export default class InventoryPage {
                 const el = items.eq(randomIndex);
                 return new ItemComponent(el);
             });
-    }}
+    }
+
+    getRandomItemComponents(numberOfItems){
+        let chosenIndexes=[];
+        let chosenItems=[];
+        return this.getInventoryItemsList()
+            .then((items)=>{
+                while(chosenItems.length < numberOfItems) {
+                    let randomIndex = Math.floor(Math.random() * items.length);
+                    if (!chosenIndexes.includes(randomIndex)) {
+                        chosenIndexes.push(randomIndex);
+                        const el = items.eq(randomIndex);
+                        chosenItems.push(new ItemComponent(el));
+                    }
+                }
+                  return chosenItems;
+            })
+    }
+}

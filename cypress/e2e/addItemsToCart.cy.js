@@ -31,7 +31,7 @@ const cartIconComponent = new CartItemComponent();
                 .should('be.visible')
                 .and('have.text', '1');
             headerComponent.clickCartIcon();
-             cartPage.getFirstItemComponent()
+             cartPage.getFirstCartItemComponent()
                  .then((item)=>{
                    cy.wrap(item.cartItemName).should('have.text', itemName);
                    cy.wrap(item.cartItemPrice).should('have.text', itemPrice);
