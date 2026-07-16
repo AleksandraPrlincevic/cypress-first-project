@@ -3,10 +3,12 @@ import ItemComponent from "../pages/ItemComponent";
 import loginData from '../fixtures/LoginData.json';
 import HeaderComponent from "../pages/HeaderComponent";
 import CartPage from "../pages/CartPage";
+import CartItemComponent from "../pages/CartItemComponent";
 
 const inventoryPage = new InventoryPage();
 const headerComponent = new HeaderComponent();
 const cartPage = new CartPage();
+const cartIconComponent = new CartItemComponent();
 
   describe('SauceDemo add items', ()=>{
       beforeEach(()=>{
@@ -22,14 +24,19 @@ const cartPage = new CartPage();
              .then((item)=>{
                  itemName = item.inventoryItemName.text();
                  itemPrice = item.inventoryItemPrice.text();
-                 itemPhoto = item.inventoryItemPhoto.attr('src');
+                 //itemPhoto = item.inventoryItemPhoto.attr('src');
                  item.clickAddToCartButton();
             })
             inventoryPage.getHeader().cartIconBadge
                 .should('be.visible')
                 .and('have.text', '1');
             headerComponent.clickCartIcon();
-             cartPage.getfirstItem()
-                     .should('be.visible')
+             cartPage.getFirstItemComponent()
+                 .then((item)=>{
+                   cy.wrap(item.cartItemName).should('have.text', itemName);
+                   cy.wrap(item.cartItemPrice).should('have.text', itemPrice);
+                   //cy.wrap(item.cartItemPhoto).should('have.attr', 'src', itemPhoto); Ne postoji photo na cartstranici
+            })
+
         })
   })

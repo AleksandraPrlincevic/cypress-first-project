@@ -1,5 +1,5 @@
 import HeaderComponent from "./HeaderComponent";
-
+import CartItemComponent from "./CartItemComponent";
 export default class CartPage {
     constructor(){
         this.header = new HeaderComponent();
@@ -10,7 +10,10 @@ export default class CartPage {
     get itemsList(){
         return cy.get('[data-test="inventory-item"]');
     }
-    getFirstItem(){
-        return this.itemsList.eq(0);
+    getFirstItemComponent(){
+        return this.itemsList.eq(0)
+            .then((cartItem)=>{
+            return new CartItemComponent(cartItem)
+        })
     }
 }
