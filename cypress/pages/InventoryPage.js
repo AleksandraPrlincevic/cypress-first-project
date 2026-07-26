@@ -41,7 +41,7 @@ export default class InventoryPage {
                         chosenItems.push(new ItemComponent(el));
                     }
                 }
-                  return chosenItems;
+                 return chosenItems;
             })
     }
 }

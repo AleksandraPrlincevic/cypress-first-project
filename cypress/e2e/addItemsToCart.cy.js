@@ -37,6 +37,26 @@ const cartIconComponent = new CartItemComponent();
                    cy.wrap(item.cartItemPrice).should('have.text', itemPrice);
                    //cy.wrap(item.cartItemPhoto).should('have.attr', 'src', itemPhoto); Ne postoji photo na cartstranici
             })
-
         })
+
+      it('Should be able to add multiple random items to Cart',()=>{
+          let addedItemsList = [];
+          inventoryPage.getRandomItemComponents(4).each((item)=>{
+              item.clickAddToCartButton();
+              addedItemsList.push({name:item.inventoryItemName.text(), price: item.inventoryItemPrice.text()});
+          })
+          headerComponent.cartIconBadge
+              .should('be.visible')
+              .and('have.text', '4')
+              headerComponent.clickCartIcon()
+              cartPage.makeCartItemComponentsFromList().then((items)=>{
+              expect(items).to.have.length( addedItemsList.length)
+              items.forEach((item)=> {
+                    let match = addedItemsList.find((it) =>
+                      it.name === item.cartItemName.text() && it.price === item.cartItemPrice.text());
+                          expect(match).to.exist;
+                      })
+              })
+      })
   })
+

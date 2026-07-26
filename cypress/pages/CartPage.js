@@ -2,19 +2,31 @@ import HeaderComponent from "./HeaderComponent";
 import CartItemComponent from "./CartItemComponent";
 
 export default class CartPage {
-    constructor(){
+    constructor() {
         this.header = new HeaderComponent();
     }
-    getHeader(){
+
+    getHeader() {
         return this.header;
     }
-    get cartItemsList(){
+
+    get cartItemsList() {
         return cy.get('[data-test="inventory-item"]');
     }
-    getFirstCartItemComponent(){
+
+    makeCartItemComponentsFromList() {
+        let cartComponentsList = [];
+        return this.cartItemsList.each(item => {
+            cartComponentsList.push(new CartItemComponent(item));
+        }).then(() => {
+            return cartComponentsList
+        });
+    }
+
+    getFirstCartItemComponent() {
         return this.cartItemsList.eq(0)
-            .then((cartItem)=>{
-            return new CartItemComponent(cartItem)
-        })
+            .then((cartItem) => {
+                return new CartItemComponent(cartItem)
+            })
     }
 }
