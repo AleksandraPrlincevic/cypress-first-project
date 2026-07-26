@@ -27,12 +27,16 @@
 
 //import LoginPage from "../pages/LoginPage";
 //const loginPage = new LoginPage();
+import InventoryPage from "../pages/InventoryPage";
 
 Cypress.Commands.add('login',(username, password)=>{
     if (username !=='') {cy.get('#user-name').type(username)}
     if (password !=='') {cy.get('#password').type(password)}
     cy.get('#login-button').click();
 });
-Cypress.Commands.add('selectRandomItem', ()=>{
-
+Cypress.Commands.add('addMultipleRandomItems',(x)=>{
+    const inventoryPage= new InventoryPage();
+    inventoryPage.getRandomItemComponents(4).each((item)=>{
+        item.clickAddToCartButton();
+    })
 })
