@@ -24,5 +24,9 @@ describe('Saucedemo remove items', ()=> {
                 item.clickRemoveFromCartButton();
             })
         })
+        cartPage.getHeader().cartIconBadge
+            .should('not.exist')
+        cartPage.cartItemsList
+            .should('not.exist')
     })
 })
