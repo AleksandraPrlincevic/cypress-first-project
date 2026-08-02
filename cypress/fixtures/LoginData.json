@@ -5,10 +5,11 @@
     "label": "valid credentials"
   },
   "invalidLogins": [
-    {"username":"standard_user", "password": "wrong_sauce","label": "wrong password" },
-    {"username":"standard_user", "password": "","label": "empty password field"},
-    {"username":"wrong_user", "password":"secret_sauce", "label": "wrong user"},
-    {"username":"", "password": "secret_sauce","label": "empty username field"},
-    {"username":"", "password": "","label": "empty username and password fields"}
+    {"username":"standard_user", "password": "wrong_sauce","label": "wrong password", "message": "" },
+    {"username":"standard_user", "password": "","label": "empty password field", "message": ""},
+    {"username":"wrong_user", "password":"secret_sauce", "label": "wrong user", "message": ""},
+    {"username":"", "password": "secret_sauce","label": "empty username field", "message": ""},
+    {"username":"", "password": "","label": "empty username and password fields", "message": ""},
+    {"username": "locked_out_user", "password": "secret_sauce", "label": "locked out user", "message": "locked out"}
   ]
 }

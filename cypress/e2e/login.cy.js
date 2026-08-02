@@ -31,6 +31,7 @@ describe('SauceDemo login', ()=>{
                 cy.url().should('not.include', '/inventory.html')
                 loginPage.loginButton.should('be.visible')
                 loginPage.errorMessage.should('be.visible')
+                    .and('include.text', invalidLogin.message)
             })
         })});
 
