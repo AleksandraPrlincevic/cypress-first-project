@@ -4,7 +4,7 @@
 End-to-end test automation framework for [SauceDemo](https://www.saucedemo.com/), built with **Cypress** and **JavaScript**, using the Page Object Model (POM) pattern.
 
 This project was built as a practice/portfolio project to prepare for a Junior QA Automation Engineer role. A companion project testing the same site with **Java + Selenium** 
-is available here:  [Java/Selenium version of this project](https://github.com/AleksandraPrlincevic/libraryPracticeProject).
+is available here:  [Java/Selenium version of this project](https://github.com/AleksandraPrlincevic/saucedemo-selenium-automation-project).
 ## Tech Stack
 
      - Node.js v24.18.0
