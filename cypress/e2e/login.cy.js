@@ -19,14 +19,14 @@ it('Should not login with invalid username', ()=>{
 });*/
 describe('SauceDemo login', ()=>{
     beforeEach(()=>{cy.visit('https://www.saucedemo.com/')});
-        it(`Should login successfully with ${loginData.validLogins.label}`, () => {
+        it(`Logs in successfully with ${loginData.validLogins.label}`, () => {
             cy.login(loginData.validLogins.username, loginData.validLogins.password);
             cy.url().should('include', '/inventory.html');
             cy.get('.title').should('have.text', 'Products');
             cy.contains('Products').should('be.visible');
             });
         loginData.invalidLogins.forEach((invalidLogin) => {
-            it(`Should not login with ${invalidLogin.label}`, () => {
+            it(`Does not login with ${invalidLogin.label}`, () => {
                 cy.login(invalidLogin.username, invalidLogin.password)
                 cy.url().should('not.include', '/inventory.html')
                 loginPage.loginButton.should('be.visible')

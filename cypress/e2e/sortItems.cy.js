@@ -9,7 +9,7 @@ describe('SauceDemo sort items', ()=> {
         cy.login(loginData.validLogins.username,
             loginData.validLogins.password);
     });
-    it('Should be able to sort items from low to high price on Inventory page', () => {
+    it('Sorts items from low to high price on Inventory page', () => {
        inventoryPage.clickSortingButton()
        inventoryPage.selectSortFromLowToHighPrice()
         inventoryPage.getInventoryItemsPrice()
@@ -19,7 +19,7 @@ describe('SauceDemo sort items', ()=> {
                expect(actualPrices).to.deep.equal(expectedPrices)
             })
     })
-    it('Should be able to sort items from high to low price on Inventory page',()=>{
+    it('Sorts items from high to low price on Inventory page',()=>{
         inventoryPage.clickSortingButton()
         inventoryPage.selectSortFromHighToLowPrice()
         inventoryPage.getInventoryItemsPrice()
@@ -29,7 +29,7 @@ describe('SauceDemo sort items', ()=> {
                 expect(actualPrices).to.deep.equal(expectedPrice)
             })
     })
-    it('Should be able to sort items from A to Z on Inventory page',()=>{
+    it('Sorts items from A to Z on Inventory page',()=>{
         inventoryPage.clickSortingButton()
         inventoryPage.selectSortFromAToZ()
         inventoryPage.getInventoryItemsName()
@@ -39,7 +39,7 @@ describe('SauceDemo sort items', ()=> {
                 expect(actualNames).to.deep.equal(expectedNames)
             })
     })
-    it('Should be able to sort items from Zto A on Inventory page', ()=>{
+    it('Sorts items from Zto A on Inventory page', ()=>{
         inventoryPage.clickSortingButton()
         inventoryPage.selectSortFromZToA()
         inventoryPage.getInventoryItemsName()

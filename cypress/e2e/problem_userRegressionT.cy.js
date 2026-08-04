@@ -6,12 +6,12 @@ import HeaderComponent from "../pages/HeaderComponent";
 const headerComponent = new HeaderComponent()
 import CartPage from "../pages/CartPage";
 const cartPage = new CartPage()
-describe('problem_user tests exploring known bugs and are set to pass if bugs still exist', ()=>{
+describe('problem_user known bugs - tests pass if bugs still exist', ()=>{
     beforeEach(()=>{
         cy.visit('https://www.saucedemo.com/')
         cy.login('problem_user', loginData.validLogins.password)
     })
-   it('Displays the same wrong image for every item', ()=>{
+   it('Does not display the proper image for each item (but the same wrong one)', ()=>{
         inventoryPage.getItemsImgs()
             .then(($imgs)=>{
                const imgSrcs = [...$imgs].map(img=>img.src)
@@ -20,39 +20,45 @@ describe('problem_user tests exploring known bugs and are set to pass if bugs st
             })
     })
 
-    it('Can not sort items from Z to A', ()=>{
+    it('Does not sort items from Z to A', ()=>{
         inventoryPage.clickSortingButton()
         inventoryPage.selectSortFromZToA()
         inventoryPage.getInventoryItemsName()
             .then(($names)=>{
                 const actualNames = [...$names].map(el=> el.innerText)
                 const expectedNames = [...$names].map(el=>el.innerText).sort().reverse()
-                expect(actualNames).to.not.equal(expectedNames)  //ne moze se sortirati od Z ka A
+                expect(actualNames).to.not.deep.equal(expectedNames)  //ne moze se sortirati od Z ka A
             })
     })
-    it('Can not sort items from low to high prices', ()=>{
+    it('Does not sort items from low to high prices', ()=>{
         inventoryPage.clickSortingButton()
-        inventoryPage.selectSortFromZToA()
+        inventoryPage.selectSortFromLowToHighPrice()
         inventoryPage.getInventoryItemsPrice()
             .then(($prices)=>{
                 const actualPrices = [...$prices].map(el=> parseFloat(el.innerText.replace('$','')))
                 const expectedPrices = [...$prices].map(el=>parseFloat(el.innerText.replace('$',''))).sort((a,b)=>a-b)
-                expect(actualPrices).to.not.equal(expectedPrices)  //ne moze se sortirati od niskih do visokih cena
+                expect(actualPrices).to.not.deep.equal(expectedPrices)  //ne moze se sortirati od niskih do visokih cena
             })
     })
-    it('Can not sort items from high to low prices', ()=>{
+    it('Does not sort items from high to low prices', ()=>{
         inventoryPage.clickSortingButton()
         inventoryPage.selectSortFromHighToLowPrice()
         inventoryPage.getInventoryItemsPrice()
             .then(($prices)=>{
                 const actualPrices = [...$prices].map(el=>parseFloat(el.innerText.replace('$','')))
                 const expectedPrices = [...$prices].map(el=>parseFloat(el.innerText.replace('$',''))).sort((a,b)=>b-a)
-                expect(actualPrices).to.not.equal(expectedPrices) //ne moze se sortirati od visokih do niskih cena
+                expect(actualPrices).to.not.deep.equal(expectedPrices) //ne moze se sortirati od visokih do niskih cena
             })
     })
 
-    it('Can not click on all "Add to cart" buttons on inventory page', ()=>{
+    it('Does not add all items to cart from Inventory page, some "Add to cart" buttons do not function', ()=>{
         inventoryPage.clickAddToCartButtons()
-
+        headerComponent.cartIconBadge.invoke('text')
+            .should('not.equal', '6')
+        inventoryPage.getAddToCartButtons()
+            .then(($buttons)=>{
+            const allAreRemove = [...$buttons].every(text=>text.innerText==='Remove')
+                expect(allAreRemove).to.be.false
+        })
     })
 })

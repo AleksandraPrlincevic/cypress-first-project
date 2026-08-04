@@ -17,7 +17,7 @@ describe('Saucedemo remove items', ()=> {
             loginData.validLogins.password);
         cy.addMultipleRandomItems(4);
     })
-    it('can remove all items from cart', () => {
+    it('Removes all items from cart', () => {
         headerComponent.clickCartIcon()
         cartPage.makeCartItemComponentsFromList().then((items) => {
             items.forEach((item) => {

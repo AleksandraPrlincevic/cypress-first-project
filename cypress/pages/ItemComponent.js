@@ -19,7 +19,10 @@ export default class ItemComponent {
     }
 
     clickAddToCartButton(){
-        cy.wrap(this.addToCartButton).click();
+        this.addToCartButton.click();
+    }
+    getButtonText(){
+        return this.addToCartButton.invoke('text')
     }
     clickItemPhotoLink(){
         cy.wrap(this.inventoryItemPhoto).click();

@@ -16,7 +16,7 @@ const cartIconComponent = new CartItemComponent();
           cy.login(loginData.validLogins.username,
                    loginData.validLogins.password);
       });
-        it('Should be able to add one item to the Cart', ()=>{
+        it('Adds one item to the Cart', ()=>{
             let itemName;
             let itemPrice;
             let itemPhoto;
@@ -39,7 +39,7 @@ const cartIconComponent = new CartItemComponent();
             })
         })
 
-      it('Should be able to add multiple random items to Cart',()=>{
+      it('Adds multiple random items to Cart',()=>{
           let addedItemsList = [];
           inventoryPage.getRandomItemComponents(4).each((item)=>{
               item.clickAddToCartButton();
