@@ -20,7 +20,7 @@ is available here:  [Java/Selenium version of this project](https://github.com/A
 cypress/
 ├───e2e/                # Test spec files
 ├───fixtures/           # Page Objects and component classes
-├───pages/              # Test data (JSONs
+├───pages/              # Test data (JSONs)
 └───support/            # Custom commands and global config
 
 ```
